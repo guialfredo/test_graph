@@ -1,0 +1,12 @@
+data
+.vscode
+.ipynb_checkpoints
+.history/
+*.sh
+__pycache__
+*.tmp
+.cache
+*.log
+*.p
+*.egg-info
+*.parquet

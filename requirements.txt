@@ -1,0 +1,14 @@
+ipykernel
+ipython
+ipywidgets
+matplotlib
+mkl
+numba
+numpy
+pandas
+param
+plotly
+scikit-learn
+scipy
+seaborn
+statsmodels

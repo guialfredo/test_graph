@@ -1,0 +1,20 @@
+# REQUEST 1
+
+SELECT CAST(date as date), sum(prod_price * prod_qty) as sales 
+FROM TRANSACTION 
+GROUP BY date 
+ORDER BY date ASC
+WHERE date >= "01-01-2019" AND date <= "31-12-2019"
+
+# REQUEST 2 
+
+SELECT t.client_id, 
+sum(case when p.product_type = "MEUBLE" then t.prod_price * t.prod_qty else 0 end) as ventes_meuble,
+sum(case when p.product_type = "DECO" then t.prod_price * t.prod_qty else 0 end) as ventes_deco
+FROM TRANSACTION t
+LEFT JOIN PRODUCT_NOMENCLATURE p
+ON t.prop_id = p.product_id 
+GROUP BY t.client_id 
+
+
+

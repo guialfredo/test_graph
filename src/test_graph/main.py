@@ -25,5 +25,5 @@ def run(path_drugs: str, path_trials: str, path_pubmed: str, path_graph: str):
 
 
 if __name__ == "__main__":
-    path_drugs, path_trials, path_pubmed, path_graph = "data/drugs.csv", "data/clinical_trials.csv", "data/pubmed.csv", "data/graph.json"
+    path_drugs, path_trials, path_pubmed, path_graph = "data/drugs.csv", "data/clinical_trials.csv", "data/pubmed.csv", "output/graph.json"
     run(path_drugs, path_trials, path_pubmed, path_graph)

@@ -1,15 +1,7 @@
 import pandas as pd
 from typing import Tuple
 
-
-def to_lowercase(df: pd.DataFrame, col: str) -> pd.DataFrame:
-    df[col] = df[col].str.lower()
-    return df
-
-
-def clean_trials_pubmed_case(df: pd.DataFrame) -> pd.DataFrame:
-    return df.pipe(to_lowercase, col="journal").pipe(
-        to_lowercase, col="title")
+from test_graph.preprocessing.text_utils import clean_trials_pubmed_case, to_lowercase, handle_encoding_error
 
 
 def clean_case(drugs: pd.DataFrame, trials: pd.DataFrame, pubmed: pd.DataFrame) -> Tuple[pd.DataFrame, pd.DataFrame, pd.DataFrame]:
@@ -17,3 +9,19 @@ def clean_case(drugs: pd.DataFrame, trials: pd.DataFrame, pubmed: pd.DataFrame) 
         pubmed), clean_trials_pubmed_case(trials)
     drugs_clean = drugs.pipe(to_lowercase, col="drug")
     return drugs_clean, trials_clean, pubmed_clean
+
+
+def clean_trials_encoding_error(trials: pd.DataFrame) -> pd.DataFrame:
+    """deal with specific clinical trials encoding issue
+
+    :param trials: clinical trials data
+    :type trials: pd.DataFrame
+    :return: cleaned clinical trials data
+    :rtype: pd.DataFrame
+    """
+    return trials.assign(journal=trials["journal"].apply(lambda x: handle_encoding_error(x)))
+
+
+def run_text_cleaning(drugs: pd.DataFrame, trials: pd.DataFrame, pubmed: pd.DataFrame) -> Tuple[pd.DataFrame, pd.DataFrame, pd.DataFrame]:
+    drugs_clean, trials_clean, pubmed_clean = clean_case(drugs, trials, pubmed)
+    return drugs_clean, clean_trials_encoding_error(trials_clean), pubmed_clean

@@ -51,18 +51,19 @@ directement visualisé sur le repo
 Chargement des données (package load) -> 
 Cleaning/preprocessing (package preprocessing) ->
 Construction du graphe (package graph) ->
-Feature retournatn le journal mentionnant le plus de médicaments différents (package counting_feature)
+Feature retournant le journal mentionnant le plus de médicaments différents (package counting_feature)
 
 ## 1. Construction du graphe
 
-On prend pour chaque médicament les étapes suivantes :
+On effectue pour chaque médicament les étapes suivantes :
 1. Trouver le subset de la base d'articles pubmed 
 dont le titre de l'article mentionne le médicament
 2. Trouver le subset de la base d'essais cliniques 
 dont le titre mentionne le médicament
 3. Créer un dictionnaire résumant l'information sur les journaux
 ayant publié un article dont le titre mentionne le médicament
-(que l'article soit pubmed ou essai cliniue)
+(que l'article soit pubmed ou essai clinique : pour cela on a 
+au préalable concaténé les deux subsets précédents)
 4. Créer un dictionnaire résumant l'information sur les articles
 pubmed mentionnant le médicament
 5. Créer un dictionnaire résumant l'information sur les articles

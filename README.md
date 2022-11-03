@@ -2,16 +2,16 @@
 
 1. Installation du package test_graph
 
-Se rendre à la racine, ensuite deux manières de faire 
+Se rendre à la racine, ensuite deux manières de faire
 à partir de anaconda prompt:
 
-Soit activer un environnement virtuel
+Soit activer un environnement virtuel  
     conda create -n test_graph_env 
-    conda activate test_graph_env
-    conda install --file requirements.txt -c conda-forge (cette étape prend du temps)
-Ensuite pip install -e . pour installer le package
+    conda activate test_graph_env  
+    conda install --file requirements.txt -c conda-forge (cette étape prend du temps)  
+Ensuite pip install -e . pour installer le package  
 
-Soit installer le package directement dans l'environnement de base avec 
+Soit installer le package directement dans l'environnement de base avec
 pip install -e . à la racine de répertoire
 
 NB : à noter que la première procédure peut ne pas fonctionner sur un ordinateur
@@ -19,23 +19,25 @@ avec certaines sécurités (cf https://github.com/conda/conda/issues/8691)
 
 2. Répertoire de données
 
-Je n'ai pas versionné le répertoire data/ (voir le .gitignore)
+Je n'ai pas versionné le répertoire data/ (voir le .gitignore).  
 Il faut donc placer dans ce répertoire l'ensemble de la donnée fournie 
-pour réaliser le test au préalable de l'exéution du code
+pour réaliser le test au préalable de l'exéution du code  
 
 3. Exécution du code
 
 Une fois le package installé dans l'environnement, deux manières de lancer le traitement :
 
-a) via test.ipynb dans le dossier notebooks/
+a) via test.ipynb dans le dossier notebooks/  
+
 Cela permet de visualiser les résultats directement dans le notebook
 (étapes intermédiaires, création du graphe, résultat de la feature
 identifiant le journal mentionnant le plus grand nombre de médicaments),
 et de dumper le JSON représentant le graphe dans le dossier output/
 
-b) soit via le main.py en ligne de commande, pour cela
-se placer à la racine du répertoire et lancer la commande suivante :
-python src/test_graph/main.py
+b) soit via le main.py en ligne de commande
+
+Pour cela, se placer à la racine du répertoire et lancer la commande suivante :  
+python src/test_graph/main.py  
 le main dumpe le JSON représentant le graphe dans le dossier output/
 et affiche le journal mentionnant le plus grand nombre de médicaments différents
 
@@ -73,7 +75,7 @@ le atccode du médicament
 
 2. Feature retournant le journal mentionnant le plus de médicaments différents
 
-Prend en entrée le graphe produit à l'étape précédente. 
+Prend en entrée le graphe produit à l'étape précédente.  
 La feature se décompose ensuite en trois étapes de traitement :
 1. Extraire du graphe les identifiants uniques de chaque drug (fonction get_drug_ids_from_graph)
 2. Pour chaque drug, extraire la liste des journaux qui la mentionnent (sans doublons) et concaténer 

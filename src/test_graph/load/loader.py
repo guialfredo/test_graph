@@ -3,10 +3,16 @@ import json
 
 import pandas as pd
 
-def load_data(path_drugs: str, path_trials: str, path_pubmed: str) -> Tuple[pd.DataFrame, pd.DataFrame, pd.DataFrame]:
+def load_json(path_json: str) -> pd.DataFrame:
+    f = open(path_json)
+    return pd.DataFrame(json.load(f))
+
+def load_data(path_drugs: str, path_trials: str, path_pubmed_csv: str, path_pubmed_json: str) -> Tuple[pd.DataFrame, pd.DataFrame, pd.DataFrame]:
     drugs = pd.read_csv(path_drugs)
     trials = pd.read_csv(path_trials).rename(columns={"scientific_title":"title"})
-    pubmed = pd.read_csv(path_pubmed)
+    pubmed_csv = pd.read_csv(path_pubmed_csv)
+    pubmed_json = load_json(path_pubmed_json)
+    pubmed = pd.concat([pubmed_csv, pubmed_json])
     return drugs, trials, pubmed 
 
 
